@@ -1,5 +1,9 @@
 // Lightweight per-page SEO helper for the SPA (sets/updates <head> tags).
 
+const SITE_URL = "https://dbnt.studio";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/dbnt-banner.png`;
+const LINKEDIN_URL = "https://www.linkedin.com/in/deborahbaeten/";
+
 const BASE_KEYWORDS = [
   "Deborah Baeten",
   "DBNT",
@@ -70,7 +74,12 @@ export const setArticleSEO = ({ title, description, keywords = [], image, url })
   setNamedMeta("description", desc);
   setNamedMeta("keywords", allKeywords.join(", "));
   setNamedMeta("author", "Deborah Baeten — DBNT");
-  setNamedMeta("robots", "index, follow");
+  setNamedMeta(
+    "robots",
+    "index, follow, max-image-preview:large, max-snippet:-1"
+  );
+
+  const ogImage = image || DEFAULT_OG_IMAGE;
 
   // Open Graph
   setPropMeta("og:type", "article");
@@ -78,30 +87,42 @@ export const setArticleSEO = ({ title, description, keywords = [], image, url })
   setPropMeta("og:title", fullTitle);
   setPropMeta("og:description", desc);
   setPropMeta("og:locale", "nl_BE");
-  if (image) setPropMeta("og:image", image);
+  setPropMeta("og:image", ogImage);
   if (url) setPropMeta("og:url", url);
 
   // Twitter
-  setNamedMeta("twitter:card", image ? "summary_large_image" : "summary");
+  setNamedMeta("twitter:card", "summary_large_image");
   setNamedMeta("twitter:title", fullTitle);
   setNamedMeta("twitter:description", desc);
-  if (image) setNamedMeta("twitter:image", image);
+  setNamedMeta("twitter:image", ogImage);
 
   if (url) setCanonical(url);
 
   // JSON-LD structured data
   const ld = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "CreativeWork",
     headline: title || "DBNT",
+    name: title || "DBNT",
     description: desc,
-    image: image ? [image] : undefined,
+    image: [ogImage],
     keywords: allKeywords.join(", "),
-    author: { "@type": "Person", name: "Deborah Baeten" },
+    author: {
+      "@type": "Person",
+      name: "Deborah Baeten",
+      url: SITE_URL,
+      sameAs: [LINKEDIN_URL],
+    },
+    creator: { "@type": "Person", name: "Deborah Baeten" },
     publisher: {
       "@type": "Organization",
       name: "DBNT — Design Beyond Normal Thinking",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/assets/dbnt-logo.png`,
+      },
       areaServed: "Peer, Limburg, België",
+      sameAs: [LINKEDIN_URL],
     },
     mainEntityOfPage: url || undefined,
     inLanguage: "nl-BE",
@@ -127,7 +148,14 @@ export const setHomeSEO = () => {
   setNamedMeta("description", desc);
   setNamedMeta("keywords", BASE_KEYWORDS.join(", "));
   setNamedMeta("author", "Deborah Baeten — DBNT");
-  setNamedMeta("robots", "index, follow");
+  setNamedMeta(
+    "robots",
+    "index, follow, max-image-preview:large, max-snippet:-1"
+  );
+  setNamedMeta("geo.region", "BE-VLI");
+  setNamedMeta("geo.placename", "Peer, Limburg, België");
+  setNamedMeta("geo.position", "51.1306;5.4581");
+  setNamedMeta("ICBM", "51.1306, 5.4581");
 
   setPropMeta("og:type", "website");
   setPropMeta("og:site_name", "DBNT — Design Beyond Normal Thinking");
@@ -135,20 +163,29 @@ export const setHomeSEO = () => {
   setPropMeta("og:description", desc);
   setPropMeta("og:locale", "nl_BE");
   setPropMeta("og:url", url);
+  setPropMeta("og:image", DEFAULT_OG_IMAGE);
 
-  setNamedMeta("twitter:card", "summary");
+  setNamedMeta("twitter:card", "summary_large_image");
   setNamedMeta("twitter:title", title);
   setNamedMeta("twitter:description", desc);
+  setNamedMeta("twitter:image", DEFAULT_OG_IMAGE);
 
   setCanonical(url);
 
   const ld = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["Organization", "ProfessionalService"],
     name: "DBNT — Deborah Baeten",
+    alternateName: "DBNT",
     description: desc,
     url,
-    areaServed: "Peer, Limburg, België",
+    logo: `${SITE_URL}/assets/dbnt-logo.png`,
+    image: DEFAULT_OG_IMAGE,
+    email: "deborah@dbnt.studio",
+    slogan: "Design Beyond Normal Thinking",
+    sameAs: [LINKEDIN_URL],
+    areaServed: ["Peer", "Limburg", "België", "Vlaanderen"],
+    geo: { "@type": "GeoCoordinates", latitude: 51.1306, longitude: 5.4581 },
     knowsAbout: [
       "Grafisch design",
       "Logo ontwerp",
@@ -156,10 +193,17 @@ export const setHomeSEO = () => {
       "Huisstijl",
       "Visuele identiteit",
     ],
+    makesOffer: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Logo-ontwerp" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Huisstijl & branding" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Visuele identiteit" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Grafisch design (print & digitaal)" } },
+    ],
     founder: {
       "@type": "Person",
       name: "Deborah Baeten",
       jobTitle: "Grafisch Designer",
+      sameAs: [LINKEDIN_URL],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Peer",

@@ -7,7 +7,11 @@
         <meta name="description" content="Portfolio van Deborah Baeten (DBNT), freelance grafisch designer uit Peer, Limburg (België). Logo's ontwerpen, huisstijl, branding en visuele identiteit." />
         <meta name="keywords" content="Deborah Baeten, DBNT, grafisch designer, grafisch vormgever, portfolio, Grafisch Design, Logo's ontwerpen, logo ontwerp, branding, huisstijl, visuele identiteit, freelance grafisch designer, Peer, Limburg, België" />
         <meta name="author" content="Deborah Baeten — DBNT" />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="geo.region" content="BE-VLI" />
+        <meta name="geo.placename" content="Peer, Limburg, België" />
+        <meta name="geo.position" content="51.1306;5.4581" />
+        <meta name="ICBM" content="51.1306, 5.4581" />
         <link rel="canonical" href="https://dbnt.studio/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="DBNT — Design Beyond Normal Thinking" />
@@ -15,9 +19,14 @@
         <meta property="og:description" content="Portfolio van Deborah Baeten (DBNT), freelance grafisch designer uit Peer, Limburg (België). Logo's ontwerpen, huisstijl, branding en visuele identiteit." />
         <meta property="og:locale" content="nl_BE" />
         <meta property="og:url" content="https://dbnt.studio/" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://dbnt.studio/assets/dbnt-banner.png" />
+        <meta property="og:image:width" content="1983" />
+        <meta property="og:image:height" content="793" />
+        <meta property="og:image:alt" content="Deborah Baeten — DBNT, grafisch designer" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Deborah Baeten — Grafisch Designer &amp; Branding | DBNT" />
         <meta name="twitter:description" content="Portfolio van Deborah Baeten (DBNT), grafisch designer uit Peer, Limburg (België)." />
+        <meta name="twitter:image" content="https://dbnt.studio/assets/dbnt-banner.png" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.png" />
@@ -27,14 +36,55 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Deborah Baeten",
-                "jobTitle": "Grafisch Designer",
-                "url": "https://dbnt.studio/",
-                "email": "deborah@dbnt.studio",
-                "worksFor": { "@type": "Organization", "name": "DBNT — Design Beyond Normal Thinking" },
-                "address": { "@type": "PostalAddress", "addressLocality": "Peer", "addressRegion": "Limburg", "addressCountry": "BE" },
-                "knowsAbout": ["Grafisch design", "Logo ontwerp", "Branding", "Huisstijl", "Visuele identiteit"]
+                "@graph": [
+                    {
+                        "@type": "Person",
+                        "@id": "https://dbnt.studio/#deborah",
+                        "name": "Deborah Baeten",
+                        "alternateName": "DBNT",
+                        "jobTitle": "Grafisch Designer",
+                        "url": "https://dbnt.studio/",
+                        "email": "deborah@dbnt.studio",
+                        "image": "https://dbnt.studio/assets/dbnt-banner.png",
+                        "description": "Deborah Baeten (DBNT) is een freelance grafisch designer uit Peer, Limburg (België), gespecialiseerd in logo-ontwerp, huisstijl, branding en visuele identiteit.",
+                        "sameAs": ["https://www.linkedin.com/in/deborahbaeten/"],
+                        "worksFor": { "@id": "https://dbnt.studio/#org" },
+                        "address": { "@type": "PostalAddress", "addressLocality": "Peer", "addressRegion": "Limburg", "addressCountry": "BE" },
+                        "knowsAbout": ["Grafisch design", "Logo ontwerp", "Branding", "Huisstijl", "Visuele identiteit"]
+                    },
+                    {
+                        "@type": ["Organization", "ProfessionalService"],
+                        "@id": "https://dbnt.studio/#org",
+                        "name": "DBNT — Design Beyond Normal Thinking",
+                        "alternateName": "DBNT",
+                        "url": "https://dbnt.studio/",
+                        "logo": "https://dbnt.studio/assets/dbnt-logo.png",
+                        "image": "https://dbnt.studio/assets/dbnt-banner.png",
+                        "email": "deborah@dbnt.studio",
+                        "slogan": "Design Beyond Normal Thinking",
+                        "description": "DBNT is het grafische designstudio van Deborah Baeten in Peer, Limburg (België): logo-ontwerp, huisstijl, branding en visuele identiteit.",
+                        "founder": { "@id": "https://dbnt.studio/#deborah" },
+                        "sameAs": ["https://www.linkedin.com/in/deborahbaeten/"],
+                        "areaServed": ["Peer", "Limburg", "België", "Vlaanderen"],
+                        "address": { "@type": "PostalAddress", "addressLocality": "Peer", "addressRegion": "Limburg", "addressCountry": "BE" },
+                        "geo": { "@type": "GeoCoordinates", "latitude": 51.1306, "longitude": 5.4581 },
+                        "knowsAbout": ["Grafisch design", "Logo ontwerp", "Branding", "Huisstijl", "Visuele identiteit"],
+                        "makesOffer": [
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logo-ontwerp" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Huisstijl & branding" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Visuele identiteit" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Grafisch design (print & digitaal)" } }
+                        ]
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://dbnt.studio/#website",
+                        "url": "https://dbnt.studio/",
+                        "name": "DBNT — Deborah Baeten",
+                        "inLanguage": "nl-BE",
+                        "publisher": { "@id": "https://dbnt.studio/#org" }
+                    }
+                ]
             }
         </script>
     </head>
